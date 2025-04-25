@@ -18,7 +18,7 @@ public class DeleteUserAPITest extends BaseTest
     String requestPath;
     Response response;
 
-
+    @Test(priority = 1)
     public void getResponse()
     {
         try
@@ -35,7 +35,7 @@ public class DeleteUserAPITest extends BaseTest
     }
 
 
-
+    @Test(dependsOnMethods = {"getResponse"},priority = 2)
     public void validateResponseCode(int code)
     {
         try

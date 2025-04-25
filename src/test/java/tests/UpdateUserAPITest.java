@@ -19,7 +19,8 @@ public class UpdateUserAPITest extends BaseTest {
     String requestPath;
     Response response;
 
-
+    @Parameters({ "PayloadPath" })
+    @Test(priority = 1)
     public void selectPayload(String payloadPath) throws Exception {
         try {
             this.requestBody = methods.readJsonAsString(PayloadKeys.PAYLOAD_UPDATE_USER + payloadPath + ".json")
@@ -31,7 +32,7 @@ public class UpdateUserAPITest extends BaseTest {
         }
     }
 
-
+    @Test(dependsOnMethods = {"selectPayload"},priority = 2)
     public void getResponse() {
         try {
             body = methods.createJSONOBJ(this.requestBody);
@@ -45,7 +46,8 @@ public class UpdateUserAPITest extends BaseTest {
     }
 
 
-
+    @Parameters({ "Code" })
+    @Test(dependsOnMethods = {"getResponse"},priority = 3)
     public void validateResponseCode(int code) {
         try {
             methods.validateStatusCode(code, response);
@@ -54,7 +56,7 @@ public class UpdateUserAPITest extends BaseTest {
         }
     }
 
-
+    @Test(dependsOnMethods = {"getResponse"},priority = 4)
     public void validateResponseMessage() {
         JsonPath evalutor = response.jsonPath();
         Assert.assertTrue(evalutor.get("name").toString().toLowerCase().contains(RunTimeVariable.NAME.toLowerCase()));

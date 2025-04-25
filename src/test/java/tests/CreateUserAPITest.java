@@ -21,7 +21,8 @@ public class CreateUserAPITest extends BaseTest
     String requestPath;
     Response response;
 
-
+    @Parameters({ "PayloadPath" })
+    @Test(priority = 1)
     public void selectPayload(String payloadPath) throws Exception
     {
         try
@@ -37,7 +38,7 @@ public class CreateUserAPITest extends BaseTest
         }
     }
 
-
+    @Test(dependsOnMethods = {"selectPayload"},priority = 2)
     public void getResponse()
     {
         try
@@ -57,7 +58,8 @@ public class CreateUserAPITest extends BaseTest
         }
     }
 
-
+    @Parameters({ "Code" })
+    @Test(dependsOnMethods = {"getResponse"},priority = 3)
     public void validateResponseCode(int code)
     {
         try
@@ -69,7 +71,7 @@ public class CreateUserAPITest extends BaseTest
             e.printStackTrace();
         }
     }
-
+    @Test(dependsOnMethods = {"getResponse"},priority = 4)
     public void validateResponseMessage()
     {
        JsonPath evalutor= response.jsonPath();
