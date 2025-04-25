@@ -23,11 +23,11 @@ public class CreateUserAPITest extends BaseTest
 
     @Parameters({ "PayloadPath" })
     @Test(priority = 1)
-    public void selectPayload(String payloadPath) throws Exception
+    public void selectPayload(String PayloadPath) throws Exception
     {
         try
         {
-            this.requestBody = methods.readJsonAsString(PayloadKeys.PAYLOAD_CREATE_USER + payloadPath + ".json")
+            this.requestBody = methods.readJsonAsString(PayloadKeys.PAYLOAD_CREATE_USER + PayloadPath + ".json")
                     .replace("morpheus", "John" + randomNumber);
 
             System.out.println("The Payload seelcted is" + this.requestBody);
@@ -60,11 +60,11 @@ public class CreateUserAPITest extends BaseTest
 
     @Parameters({ "Code" })
     @Test(dependsOnMethods = {"getResponse"},priority = 3)
-    public void validateResponseCode(int code)
+    public void validateResponseCode(int Code)
     {
         try
         {
-            methods.validateStatusCode(code, response);
+            methods.validateStatusCode(Code, response);
         }
         catch (Exception e)
         {

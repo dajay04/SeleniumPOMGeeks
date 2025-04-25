@@ -45,6 +45,7 @@ public class Methods
         RestAssured.baseURI = baseURI; // We are replacing host url to base url that we need to append in api hitting
         httprequest= RestAssured.given().relaxedHTTPSValidation();
         httprequest= httprequest.header("Content-Type","application/json");
+        httprequest= httprequest.header("x-api-key","reqres-free-v1");
         httprequest= httprequest.body(body.toString());
         response= httprequest.post(requestPath);
         System.out.println(response.getStatusCode());
@@ -57,6 +58,7 @@ public class Methods
         RestAssured.baseURI = baseURI; // We are replacing host url to base url that we need to append in api hitting
         httprequest= RestAssured.given().relaxedHTTPSValidation();
         httprequest= httprequest.header("Content-Type","application/json");
+        httprequest= httprequest.header("x-api-key","reqres-free-v1");
         httprequest= httprequest.body(body.toString());
         response= httprequest.put(requestPath);
         System.out.println(response.getStatusCode());
@@ -69,6 +71,7 @@ public class Methods
         RestAssured.baseURI = baseURI; // We are replacing host url to base url that we need to append in api hitting
         httprequest= RestAssured.given().relaxedHTTPSValidation();
         httprequest= httprequest.header("Content-Type","application/json");
+        httprequest= httprequest.header("x-api-key","reqres-free-v1");
         response= httprequest.delete(requestPath);
         System.out.println(response.getStatusCode());
         System.out.println(response.asString());

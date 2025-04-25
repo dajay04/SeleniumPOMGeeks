@@ -21,10 +21,10 @@ public class UpdateUserAPITest extends BaseTest {
 
     @Parameters({ "PayloadPath" })
     @Test(priority = 1)
-    public void selectPayload(String payloadPath) throws Exception {
+    public void selectPayload(String PayloadPath) throws Exception {
         try {
-            this.requestBody = methods.readJsonAsString(PayloadKeys.PAYLOAD_UPDATE_USER + payloadPath + ".json")
-                    .replace("morpheus", "John" + randomNumber);
+            this.requestBody = methods.readJsonAsString(PayloadKeys.PAYLOAD_UPDATE_USER + PayloadPath + ".json")
+                    .replace("morpheus",  RunTimeVariable.NAME);
 
             System.out.println("The Payload seelcted is" + this.requestBody);
         } catch (Exception e) {
@@ -48,9 +48,9 @@ public class UpdateUserAPITest extends BaseTest {
 
     @Parameters({ "Code" })
     @Test(dependsOnMethods = {"getResponse"},priority = 3)
-    public void validateResponseCode(int code) {
+    public void validateResponseCode(int Code) {
         try {
-            methods.validateStatusCode(code, response);
+            methods.validateStatusCode(Code, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

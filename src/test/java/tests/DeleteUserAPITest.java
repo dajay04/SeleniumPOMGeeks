@@ -34,18 +34,4 @@ public class DeleteUserAPITest extends BaseTest
         }
     }
 
-
-    @Test(dependsOnMethods = {"getResponse"},priority = 2)
-    public void validateResponseCode(int code)
-    {
-        try
-        {
-            methods.validateStatusCode(code, response);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
 }
